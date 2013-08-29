@@ -1,25 +1,25 @@
 var Bob = function() {};
 
-String.prototype.isQuestion = function() {
-  return this.indexOf('?', this.length - 1) !== -1;
+Bob.prototype._isQuestion = function(statement) {
+  return statement.slice(-1) === "?";
 }
 
-String.prototype.isYelling = function() {
-  return this.toUpperCase() == this; 
+Bob.prototype._isYelling = function(statement) {
+  return statement.toUpperCase() === statement;
 }
 
-String.prototype.isSilent = function() {
-  return this.trim().length === 0;
+Bob.prototype._isSilent = function(statement) {
+  return statement.trim() === "";
 }
 
 Bob.prototype.hey = function(statement) {
-  if(statement.isSilent()) {
+  if(this._isSilent(statement)) {
     return 'Fine. Be that way!';
   }
-  else if(statement.isYelling()) {
+  else if(this._isYelling(statement)) {
     return 'Woah, chill out!';
   }
-  else if(statement.isQuestion()) {
+  else if(this._isQuestion(statement)) {
     return 'Sure.';
   }
   else {
