@@ -1,25 +1,26 @@
+"use strict";
 var Bob = function() {};
 
-Bob.prototype._isQuestion = function(statement) {
+function isQuestion(statement) {
   return statement.slice(-1) === "?";
 }
 
-Bob.prototype._isYelling = function(statement) {
+function isYelling(statement) {
   return statement.toUpperCase() === statement;
 }
 
-Bob.prototype._isSilent = function(statement) {
+function isSilent(statement) {
   return statement.trim() === "";
 }
 
 Bob.prototype.hey = function(statement) {
-  if(this._isSilent(statement)) {
+  if(isSilent(statement)) {
     return 'Fine. Be that way!';
   }
-  else if(this._isYelling(statement)) {
+  else if(isYelling(statement)) {
     return 'Woah, chill out!';
   }
-  else if(this._isQuestion(statement)) {
+  else if(isQuestion(statement)) {
     return 'Sure.';
   }
   else {
