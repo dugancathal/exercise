@@ -1,7 +1,6 @@
 'use strict';
 var Words = function(words) {
   this.words = words;
-
   this.count = countWordsIn(words);
 }
 
@@ -19,7 +18,9 @@ function countWords(words) {
 }
 
 function splitToWords(string) {
-  return string.replace(/[^\w+]/g, ' ').trim().split(/\s+/);
+  return string.split(/[^\w]+/).filter(function(word) {
+    return !word.match(/\s+|^$/);
+  });
 }
 
 module.exports = Words;
