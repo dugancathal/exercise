@@ -11,19 +11,23 @@ class DNA
   end
 
   def count(nucleotide)
-    raise ArgumentError unless VALID_NUCLEOTIDES.include?(nucleotide)
+    raise ArgumentError if invalid_nucleotide?(nucleotide)
     sequence.downcase.scan(nucleotide.downcase).count
   end
 
   def nucleotide_counts
     DNA_NUCLEOTIDES.each_with_object(Hash.new(0)) do |nucleotide, histogram|
-      histogram[nucleotide] = count(nucleotide)
+      histogram[nucleotide] = count nucleotide
     end
   end
 
   private
 
   def invalid_sequence?(chain)
-    !chain.gsub(VALID_SEQUENCE_REGEX, '').empty?
+    !(chain.chars - DNA_NUCLEOTIDES).empty?
+  end
+
+  def invalid_nucleotide?(nucleotide)
+    !VALID_NUCLEOTIDES.include?(nucleotide)
   end
 end
