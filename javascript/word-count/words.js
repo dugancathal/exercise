@@ -12,15 +12,13 @@ function countWords(words) {
   var wordCounts = {};
   words.forEach(function(word) {
     wordCounts[word] || (wordCounts[word] = 0);
-    wordCounts[word] += 1;
+    wordCounts[word]++;
   });
   return wordCounts;
 }
 
 function splitToWords(string) {
-  return string.split(/[^\w]+/).filter(function(word) {
-    return !word.match(/\s+|^$/);
-  });
+  return string.match(/\w+/g);
 }
 
 module.exports = Words;
