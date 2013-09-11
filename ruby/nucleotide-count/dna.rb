@@ -1,7 +1,6 @@
 class DNA
   VALID_NUCLEOTIDES = %w(A C G T U)
   DNA_NUCLEOTIDES = VALID_NUCLEOTIDES - %w(U)
-  VALID_SEQUENCE_REGEX = /[#{DNA_NUCLEOTIDES.join}]/
 
   attr_reader :sequence
 
