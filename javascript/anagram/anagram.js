@@ -16,11 +16,17 @@ Anagram.prototype.match = function(words) {
 }
 
 function validAnagram(tester, testee) {
-  var testeeLetters = testee.toLowerCase().split('');
-  var testerLetters = tester.toLowerCase().split('');
-  var sameWord = testeeLetters.join('') === testerLetters.join('');
-  var isAnagram = testeeLetters.sort().join('') === testerLetters.sort().join('');
+  var sameWord = canonicalizedWord(tester) == canonicalizedWord(testee);
+  var isAnagram = sortedWord(tester) === sortedWord(testee);
   return !sameWord && isAnagram;
+}
+
+function canonicalizedWord(word) {
+  return word.toLowerCase();
+}
+
+function sortedWord(word) {
+  return canonicalizedWord(word).split('').sort().join('');
 }
 
 module.exports = Anagram;
